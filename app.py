@@ -75,7 +75,7 @@ def parsingStr(pStr):
         elif pStr == 'Help' or pStr == 'help' or pStr == '幫助':
             return '指令:\nA) 空/多 價格\nB) 價格\nC) 空/多 價格 折扣(ex:0.25)\n'
         else:
-            return 'Something wrong\n'
+            return 'Error'
             
     elif len(splitStrArray) == 2:
         if splitStrArray[0] == '空' or splitStrArray[0] == '多':
@@ -106,11 +106,11 @@ def parsingStr(pStr):
                             outStr += repr(valueList[k]) + "  " + repr(endPrice) + "\n"
                         return outStr
                 else:
-                    return '股價輸入錯誤'
+                    return 'Error'
             else:
-                return '哩公蝦RR'
+                return 'Error'
         else:
-            return '哩公蝦R'
+            return 'Error'
     elif len(splitStrArray) == 3:
         if is_number(splitStrArray[2]):
             per = float(splitStrArray[2])
@@ -142,15 +142,15 @@ def parsingStr(pStr):
                                 outStr += repr(valueList[k]) + "  " + repr(endPrice) + "\n"
                             return outStr
                     else:
-                        return '股價輸入錯誤'
+                        return 'Error'
                 else:
-                    return '哩公蝦RR'
+                    return 'Error'
             else:
-                return '哩公蝦RRRR'
+                return 'Error'
         else:
-            return '哩公蝦R'
+            return 'Error'
     else:
-        return '哩公蝦RRR'
+        return 'Error'
 
 #訊息傳遞區塊
 ##### 基本上程式編輯都在這個function #####
@@ -158,15 +158,15 @@ import re
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
-
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(parsingStr(message)))
+    if parsingStr(message) != 'Error':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(parsingStr(message)))
     #if is_number(message):
     #    inputNum = float(message)
     #    msg = '計算金額為 : ' + str(inputNum) + '\n往上1.5%為 : ' + str(round(inputNum*1.015,2)) + '\n往下1.5%為 : ' + str(round(inputNum*0.985,2)) 
     #    line_bot_api.reply_message(event.reply_token,TextSendMessage(msg))
     #else:
     #    line_bot_api.reply_message(event.reply_token,TextSendMessage('哩公蝦'))
-    
+
     #if re.match("你是誰",message):
     #    line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴你勒~~"))
     #else:
