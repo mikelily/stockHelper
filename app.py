@@ -38,19 +38,38 @@ def callback():
  
     return 'OK'
 
+#判斷輸入是否為數字
+# By : https://www.itread01.com/content/1549772101.html
+def is_number(str):
+    try:
+        # 因為使用float有一個例外是'NaN'
+        if str=='NaN':
+            return False
+        float(str)
+        return True
+    except ValueError:
+        return False
+
 #訊息傳遞區塊
 ##### 基本上程式編輯都在這個function #####
 import re
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
-    if re.match("你是誰",message):
-        line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴你勒~~"))
+    if is_number(message):
+        inputNum = float(message)
+        msg = '計算金額為 : ' + str(inputNum) + '\n往上1.5%為 : ' + str(round(inputNum*1.015,2)) + '\n往下1.5%為 : ' + str(round(inputNum*0.985,2)) 
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(msg))
     else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(message*1.015))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage('哩公蝦'))
+    #if re.match("你是誰",message):
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴你勒~~"))
+    #else:
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(message*1.015))
 
 #主程式
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
