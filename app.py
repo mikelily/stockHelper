@@ -50,18 +50,123 @@ def is_number(str):
     except ValueError:
         return False
 
+#股價List
+startValue = 1000
+valueList = []
+
+while startValue < 100000:
+    #valueArray.append(round(startValue/100,2))
+    valueList.append(startValue/100)
+    if startValue < 5000:
+        startValue += 5
+    elif startValue < 10000:
+        startValue += 10
+    elif startValue < 50000:
+        startValue += 50
+    else:
+        startValue += 100
+
+def parsingStr(pStr):
+    splitStrArray = pStr.split(' ')
+    
+    if len(splitStrArray) == 1:
+        if is_number(pStr):
+            return '計算價格為:'+pStr+'\n往上1.5%為'+str(round(float(pStr)*1.015,2))+'\n往下1.5%為'+str(round(float(pStr)*0.985,2))+'\n'
+        elif pStr == 'Help' or pStr == 'help' or pStr == '幫助':
+            return '指令:\nA) 空/多 價格\nB) 價格\nC) 空/多 價格 折扣(ex:0.25)\n'
+        else:
+            return 'Something wrong\n'
+            
+    elif len(splitStrArray) == 2:
+        if splitStrArray[0] == '空' or splitStrArray[0] == '多':
+            if is_number(splitStrArray[1]):
+                exists = float(splitStrArray[1]) in valueList
+                targetValue = float(splitStrArray[1])
+                if exists:
+                    targetIndex = valueList.index( targetValue )
+                    outStr = ''
+                    if splitStrArray[0] == '空':
+                        for k in range(targetIndex-5,targetIndex+5):
+                            fee = (targetValue + valueList[k]) * 1.425 * 0.25
+                            fee = round(fee,2)
+                            tax = targetValue * 1.5
+                            tax = round(tax,2)
+                            endPrice = (targetValue - valueList[k]) * 1000 - fee - tax
+                            endPrice = round(endPrice)
+                            outStr += repr(valueList[k]) + "  " + repr(endPrice) + "\n"
+                        return outStr
+                    else:
+                        for k in range(targetIndex-5,targetIndex+5):
+                            fee = (targetValue + valueList[k]) * 1.425 * 0.25
+                            fee = round(fee,2)
+                            tax = valueList[k] * 1.5
+                            tax = round(tax,2)
+                            endPrice = (valueList[k] - targetValue) * 1000 - fee - tax
+                            endPrice = round(endPrice)
+                            outStr += repr(valueList[k]) + "  " + repr(endPrice) + "\n"
+                        return outStr
+                else:
+                    return '股價輸入錯誤'
+            else:
+                return '哩公蝦RR'
+        else:
+            return '哩公蝦R'
+    elif len(splitStrArray) == 3:
+        if is_number(splitStrArray[2]):
+            per = float(splitStrArray[2])
+            if splitStrArray[0] == '空' or splitStrArray[0] == '多':
+                if is_number(splitStrArray[1]):
+                    exists = float(splitStrArray[1]) in valueList
+                    targetValue = float(splitStrArray[1])
+                    if exists:
+                        targetIndex = valueList.index( targetValue )
+                        outStr = ''
+                        if splitStrArray[0] == '空':
+                            for k in range(targetIndex-5,targetIndex+5):
+                                fee = (targetValue + valueList[k]) * 1.425 * per
+                                fee = round(fee,2)
+                                tax = targetValue * 1.5
+                                tax = round(tax,2)
+                                endPrice = (targetValue - valueList[k]) * 1000 - fee - tax
+                                endPrice = round(endPrice)
+                                outStr += repr(valueList[k]) + "  " + repr(endPrice) + "\n"
+                            return outStr
+                        else:
+                            for k in range(targetIndex-5,targetIndex+5):
+                                fee = (targetValue + valueList[k]) * 1.425 * 0.25
+                                fee = round(fee,2)
+                                tax = valueList[k] * 1.5
+                                tax = round(tax,2)
+                                endPrice = (valueList[k] - targetValue) * 1000 - fee - tax
+                                endPrice = round(endPrice)
+                                outStr += repr(valueList[k]) + "  " + repr(endPrice) + "\n"
+                            return outStr
+                    else:
+                        return '股價輸入錯誤'
+                else:
+                    return '哩公蝦RR'
+            else:
+                return '哩公蝦RRRR'
+        else:
+            return '哩公蝦R'
+    else:
+        return '哩公蝦RRR'
+
 #訊息傳遞區塊
 ##### 基本上程式編輯都在這個function #####
 import re
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
-    if is_number(message):
-        inputNum = float(message)
-        msg = '計算金額為 : ' + str(inputNum) + '\n往上1.5%為 : ' + str(round(inputNum*1.015,2)) + '\n往下1.5%為 : ' + str(round(inputNum*0.985,2)) 
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(msg))
-    else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage('哩公蝦'))
+
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(parsingStr(message)))
+    #if is_number(message):
+    #    inputNum = float(message)
+    #    msg = '計算金額為 : ' + str(inputNum) + '\n往上1.5%為 : ' + str(round(inputNum*1.015,2)) + '\n往下1.5%為 : ' + str(round(inputNum*0.985,2)) 
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(msg))
+    #else:
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage('哩公蝦'))
+    
     #if re.match("你是誰",message):
     #    line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴你勒~~"))
     #else:
