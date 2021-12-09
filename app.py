@@ -17,7 +17,7 @@ line_bot_api = LineBotApi('mA6l5z4uRrlABWY4yuLxpp9xYApQIhNr3hp3xqdQ+GFHW+0Sd6WF1
 # 必須放上自己的Channel Secret
 handler = WebhookHandler('f7d4a81d9a0421c462d51c9c4899af7a')
 
-line_bot_api.push_message('U367eab69b0c66a0f5f40b659fb3b47a1', TextSendMessage(text='你可以開始了'))
+#line_bot_api.push_message('U367eab69b0c66a0f5f40b659fb3b47a1', TextSendMessage(text='你可以開始了'))
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -73,7 +73,18 @@ def parsingStr(pStr):
         if is_number(pStr):
             return '計算價格為:'+pStr+'\n往上1.5%為'+str(round(float(pStr)*1.015,2))+'\n往下1.5%為'+str(round(float(pStr)*0.985,2))+'\n'
         elif pStr == 'Help' or pStr == 'help' or pStr == '幫助':
-            return '指令:\nA) 空/多 價格\nB) 價格\nC) 空/多 價格 折扣(ex:0.25)\n'
+            outStr = ''
+            outStr += '指令清單:\n'
+            outStr += 'A) 空/多 價格 (折扣)\n'
+            outStr += '簡易計算進出場的賺賠\n折扣為選填，格式為0.25，預設2.5折\n'
+            outStr += 'ex: 多 120.5 / 空 115 / 空 50.5 0.28\n'
+            outStr += 'B) 價格\n'
+            outStr += '簡易計算上下1.5%大概為多少'
+            outStr += 'ex: 90 / 215.5\n'
+            outStr += 'C) count/Count/結算 總成交金額 應收付金額 (折扣)\n'
+            outStr += '幫助月退的計算損益\n折扣為選填，格式為2.5，預設2.5折\n'
+            outStr += 'ex: Count 123000 365 0.25 / 結算 323000 -1255\n'
+            return outStr
         else:
             return 'Error'
             
@@ -112,7 +123,20 @@ def parsingStr(pStr):
         else:
             return 'Error'
     elif len(splitStrArray) == 3:
-        if is_number(splitStrArray[2]):
+        if splitStrArray[0] == 'count' or splitStrArray[0] == 'Count' or splitStrArray[0] == '結算':
+            if is_number(splitStrArray[1]) and is_number(splitStrArray[2]):
+                outStr = ''
+                outStr += '總成交金額 : '+splitStrArray[1]+'\n'
+                outStr += '應收付金額 : '+splitStrArray[2]+'\n'
+                outStr += '折數 : 2.5 折\n'
+                saveValue = round(float(splitStrArray[1]) * 0.001425 * 0.75,2)
+                outStr += '折讓金額約為 : '+str(saveValue)+'\n'
+                finalValue = float(splitStrArray[2]) + saveValue
+                outStr += '結算金額約為 : '+str(finalValue)+'\n'
+                return outStr
+            else:
+                return 'Error'
+        elif is_number(splitStrArray[2]):
             per = float(splitStrArray[2])
             if splitStrArray[0] == '空' or splitStrArray[0] == '多':
                 if is_number(splitStrArray[1]):
@@ -133,7 +157,7 @@ def parsingStr(pStr):
                             return outStr
                         else:
                             for k in range(targetIndex-5,targetIndex+5):
-                                fee = (targetValue + valueList[k]) * 1.425 * 0.25
+                                fee = (targetValue + valueList[k]) * 1.425 * per
                                 fee = round(fee,2)
                                 tax = valueList[k] * 1.5
                                 tax = round(tax,2)
@@ -145,6 +169,22 @@ def parsingStr(pStr):
                         return 'Error'
                 else:
                     return 'Error'
+            else:
+                return 'Error'
+        else:
+            return 'Error'
+    elif len(splitStrArray) == 4:
+        if splitStrArray[0] == 'count' or splitStrArray[0] == 'Count' or splitStrArray[0] == '結算':
+            if is_number(splitStrArray[1]) and is_number(splitStrArray[2]) and is_number(splitStrArray[3]):
+                outStr = ''
+                outStr += '總成交金額 : '+splitStrArray[1]+'\n'
+                outStr += '應收付金額 : '+splitStrArray[2]+'\n'
+                outStr += '折數 : '+splitStrArray[3]+' 折\n'
+                saveValue = round(float(splitStrArray[1]) * 0.001425 * (1 - float(splitStrArray[3])/10),2)
+                outStr += '折讓金額約為 : '+str(saveValue)+'\n'
+                finalValue = float(splitStrArray[2]) + saveValue
+                outStr += '結算金額約為 : '+str(finalValue)+'\n'
+                return outStr
             else:
                 return 'Error'
         else:
