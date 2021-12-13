@@ -66,6 +66,23 @@ while startValue < 100000:
     else:
         startValue += 100
 
+import random
+def randomGuess(a,b,target):
+    r = random.randint(0,2000)
+    #print(r)
+    if r == 0:
+        return 'ALL IN !! (1/2000機率!)'
+    elif r > 0 and r < 400:
+        return a+target+'我覺得不太妙QQ'
+    elif r > 399 and r < 700:
+        return a+target+'我覺得不錯喔!'
+    elif r > 699 and r < 1000:
+        return '等我擲杯看一下'+a+target+'好不好 XD'
+    elif r > 999 and r < 1300:
+        return '前面有套牢'+b+'軍嗎!?'
+    else:
+        return '停損點位設好了嗎!?'
+
 def parsingStr(pStr):
     splitStrArray = pStr.split(' ')
     
@@ -85,6 +102,11 @@ def parsingStr(pStr):
             outStr += '幫助月退的計算損益\n折扣為選填，格式為2.5，預設2.5折\n'
             outStr += 'ex: Count 123000 365 0.25 / 結算 323000 -1255\n'
             return outStr
+        elif (pStr[0] == '空' or pStr[0] == '多') and pStr[-2:] == '如何':
+            if pStr[0] == '空':
+                return(randomGuess('空','多',pStr[1:-2]))
+            else:
+                return(randomGuess('多','空',pStr[1:-2]))
         else:
             return 'Error'
             
