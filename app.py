@@ -70,25 +70,35 @@ import random
 def randomGuess(a,b,target):
     r = random.randint(0,2000)
     #print(r)
-    if r == 0:
+    if r == 0: # 1/2001
         return 'ALL IN !! (1/2000機率!)'
-    elif r > 0 and r < 400:
+    elif r > 0 and r < 301: # 300/2001 約= 15%
         return a+target+'我覺得不太妙QQ'
-    elif r > 399 and r < 700:
+    elif r > 300 and r < 601: # 300/2001 約= 15%
         return a+target+'我覺得不錯喔!'
-    elif r > 699 and r < 1000:
+    elif r > 600 and r < 1001: # 400/2001 約= 20%
         return '等我擲杯看一下'+a+target+'好不好 XD'
-    elif r > 999 and r < 1300:
+    elif r > 1000 and r < 1501: # 500/2001 約= 25%
         return '前面有套牢'+b+'軍嗎!?'
-    else:
-        return '停損點位設好了嗎!?'
+    else: # 500/2001 約= 25%
+        return '停損點位設好了嗎!?設定好就勇敢'+a+'吧!'
 
 def parsingStr(pStr):
     splitStrArray = pStr.split(' ')
     
     if len(splitStrArray) == 1:
         if is_number(pStr):
-            return '計算價格為:'+pStr+'\n往上1.5%為'+str(round(float(pStr)*1.015,2))+'\n往下1.5%為'+str(round(float(pStr)*0.985,2))+'\n'
+            outStr = ''
+            outStr += '============\n'
+            outStr += '往上2%為 : '+str(round(float(pStr)*1.02,2))+'\n'
+            outStr += '往上1.5%為 : '+str(round(float(pStr)*1.015,2))+'\n'
+            outStr += '往上1%為 : '+str(round(float(pStr)*1.01,2))+'\n'
+            outStr += '=== 計算價格為 : '+pStr+' ===\n'
+            outStr += '往下1%為 : '+str(round(float(pStr)*0.99,2))+'\n'
+            outStr += '往下1.5%為 : '+str(round(float(pStr)*0.985,2))+'\n'
+            outStr += '往下2%為 : '+str(round(float(pStr)*0.98,2))+'\n'
+            outStr += '============'
+            return outStr
         elif pStr == 'Help' or pStr == 'help' or pStr == '幫助':
             outStr = ''
             outStr += '指令清單:\n'
@@ -96,11 +106,15 @@ def parsingStr(pStr):
             outStr += '簡易計算進出場的賺賠\n折扣為選填，格式為0.25，預設2.5折\n'
             outStr += 'ex: 多 120.5 / 空 115 / 空 50.5 0.28\n'
             outStr += 'B) 價格\n'
-            outStr += '簡易計算上下1.5%大概為多少'
+            outStr += '簡易計算上下1/1.5/2%大概為多少'
             outStr += 'ex: 90 / 215.5\n'
             outStr += 'C) count/Count/結算 總成交金額 應收付金額 (折扣)\n'
             outStr += '幫助月退的計算損益\n折扣為選填，格式為2.5，預設2.5折\n'
             outStr += 'ex: Count 123000 365 0.25 / 結算 323000 -1255\n'
+            outStr += 'D) 猜運勢(?)'
+            outStr += '用亂數來給建議(?)切勿盲目跟單(?)'
+            outStr += '指令重點為開頭為多or空，結尾為如何，不用空格'
+            outStr += 'ex: 空3035如何 / 多台積電如何'
             return outStr
         elif (pStr[0] == '空' or pStr[0] == '多') and pStr[-2:] == '如何':
             if pStr[0] == '空':
