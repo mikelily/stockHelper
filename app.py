@@ -71,7 +71,7 @@ def randomGuess(a,b,target):
     r = random.randint(0,2000)
     #print(r)
     if r == 0: # 1/2001
-        return 'ALL IN !! (1/2000機率!)'
+        return 'ALL IN !! (1/2001機率!)'
     elif r > 0 and r < 301: # 300/2001 約= 15%
         return a+target+'我覺得不太妙QQ'
     elif r > 300 and r < 601: # 300/2001 約= 15%
@@ -106,14 +106,14 @@ def parsingStr(pStr):
             outStr += '簡易計算進出場的賺賠\n折扣為選填，格式為0.25，預設2.5折\n'
             outStr += 'ex: 多 120.5 / 空 115 / 空 50.5 0.28\n'
             outStr += 'B) 價格\n'
-            outStr += '簡易計算上下1/1.5/2%大概為多少'
+            outStr += '簡易計算上下1/1.5/2%大概為多少\n'
             outStr += 'ex: 90 / 215.5\n'
             outStr += 'C) count/Count/結算 總成交金額 應收付金額 (折扣)\n'
             outStr += '幫助月退的計算損益\n折扣為選填，格式為2.5，預設2.5折\n'
             outStr += 'ex: Count 123000 365 0.25 / 結算 323000 -1255\n'
-            outStr += 'D) 猜運勢(?)'
-            outStr += '用亂數來給建議(?)切勿盲目跟單(?)'
-            outStr += '指令重點為開頭為多or空，結尾為如何，不用空格'
+            outStr += 'D) 猜運勢(?)\n'
+            outStr += '用亂數來給建議(?)切勿盲目跟單(?)\n'
+            outStr += '指令重點為開頭為多or空，結尾為如何，不用空格\n'
             outStr += 'ex: 空3035如何 / 多台積電如何'
             return outStr
         elif (pStr[0] == '空' or pStr[0] == '多') and pStr[-2:] == '如何':
