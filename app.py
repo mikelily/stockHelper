@@ -186,13 +186,13 @@ def parsingStr(pStr):
             isUp = mid > num0
 
             outStr = ''
-            outStr += '中間K棒的高點為 ' + str(num2) + ' ,低點為 ' + str(num1) + '\n'
-            outStr += '從' + str(num0) + '往'
+            outStr += '中間K棒的高點為 ' + str(num2) + ' ,\n低點為 ' + str(num1) + '\n'
+            outStr += '⚠ 從' + str(num0) + '往'
             if isUp:
                 outStr += '上'
             else:
                 outStr += '下'
-            outStr += '⚠ 翻的滿足區約在 ' + str(mid+mid-num0) + ' ⚠\n'
+            outStr += '翻的滿足區約在 ' + str(mid+mid-num0) + ' ⚠\n'
             return outStr
         elif is_number(splitStrArray[2]):
             per = float(splitStrArray[2])
