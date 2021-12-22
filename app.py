@@ -114,7 +114,12 @@ def parsingStr(pStr):
             outStr += 'D) 猜運勢(?)\n'
             outStr += '用亂數來給建議(?)切勿盲目跟單(?)\n'
             outStr += '指令重點為開頭為多or空，結尾為如何，不用空格\n'
-            outStr += 'ex: 空3035如何 / 多台積電如何'
+            outStr += 'ex: 空3035如何 / 多台積電如何\n'
+            outStr += 'E) 翻亞當\n'
+            outStr += '輸入高/低點跟中間K棒開收，簡單試算滿足區大約在哪\n'
+            outStr += '格式為三個數字中間空白隔開，第一個為高/低點\n'
+            outStr += '後面兩個數字為中間K棒的開/收盤價(順序不重要)\n'
+            outStr += 'ex: 23.5 30 30.8'
             return outStr
         elif (pStr[0] == '空' or pStr[0] == '多') and pStr[-2:] == '如何':
             if pStr[0] == '空':
@@ -216,7 +221,7 @@ def parsingStr(pStr):
             isUp = mid > num0
 
             outStr = ''
-            outStr += '翻亞當中間K棒的高點為 ' + str(num2) + ' ,低點為 ' + str(num1) + '\n'
+            outStr += '中間K棒的高點為 ' + str(num2) + ' ,低點為 ' + str(num1) + '\n'
             outStr += '從' + str(num0) + '往'
             if isUp:
                 outStr += '上'
