@@ -192,7 +192,7 @@ def parsingStr(pStr):
                 outStr += '上'
             else:
                 outStr += '下'
-            outStr += '翻 ===\n滿足區約在 ' + str(mid+mid-num0) + '\n'
+            outStr += '翻 ===\n滿足區約在 ' + str(round((mid+mid-num0),2)) + '\n'
             return outStr
         elif is_number(splitStrArray[2]):
             per = float(splitStrArray[2])
