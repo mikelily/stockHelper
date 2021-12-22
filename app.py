@@ -177,7 +177,7 @@ def parsingStr(pStr):
                 return outStr
             else:
                 return 'Error'
-        elif is_number(splitStrArray[2]):
+        elif is_number(splitStrArray[2]) and is_number(splitStrArray[0]) == False:
             per = float(splitStrArray[2])
             if splitStrArray[0] == '空' or splitStrArray[0] == '多':
                 if is_number(splitStrArray[1]):
