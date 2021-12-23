@@ -120,7 +120,7 @@ def parsingStr(pStr):
             outStr += '格式為三個數字中間空白隔開，第一個為高/低點\n'
             outStr += '後面兩個數字為中間K棒的開/收盤價(順序不重要)\n'
             outStr += 'ex: 23.5 30 30.8\n\n'
-            outStr += '110/12/23 ver 1.0.07'
+            outStr += '110/12/23 ver 1.0.7'
             return outStr
         elif (pStr[0] == '空' or pStr[0] == '多') and pStr[-2:] == '如何':
             if pStr[0] == '空':
