@@ -119,7 +119,8 @@ def parsingStr(pStr):
             outStr += '輸入高/低點跟中間K棒開收，簡單試算滿足區大約在哪\n'
             outStr += '格式為三個數字中間空白隔開，第一個為高/低點\n'
             outStr += '後面兩個數字為中間K棒的開/收盤價(順序不重要)\n'
-            outStr += 'ex: 23.5 30 30.8'
+            outStr += 'ex: 23.5 30 30.8\n\n'
+            outStr += '110/12/23 ver 1.0.07'
             return outStr
         elif (pStr[0] == '空' or pStr[0] == '多') and pStr[-2:] == '如何':
             if pStr[0] == '空':
@@ -262,9 +263,9 @@ def handle_message(event):
     profile = line_bot_api.get_group_member_profile(srcGroupID, srcUserID)
     member_ids_res = line_bot_api.get_group_member_ids(srcGroupID)
 
-    if message == 'ID':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(member_ids_res))
-    elif parsingStr(message) != 'Error':
+    #if message == 'ID':
+    #    line_bot_api.reply_message(event.reply_token,TextSendMessage(member_ids_res))
+    if parsingStr(message) != 'Error':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(parsingStr(message)))
     #if is_number(message):
     #    inputNum = float(message)
