@@ -260,8 +260,8 @@ def handle_message(event):
 
     srcUserID = event.source.useId
     srcGroupID = event.source.groupId
-    profile = line_bot_api.get_group_member_profile(srcGroupID, srcUserID)
-    member_ids_res = line_bot_api.get_group_member_ids(srcGroupID)
+    #profile = line_bot_api.get_group_member_profile(srcGroupID, srcUserID)
+    #member_ids_res = line_bot_api.get_group_member_ids(srcGroupID)
 
     #if message == 'ID':
     #    line_bot_api.reply_message(event.reply_token,TextSendMessage(member_ids_res))
