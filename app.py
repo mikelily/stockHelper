@@ -258,8 +258,8 @@ import re
 def handle_message(event):
     message = event.message.text
 
-    srcUserID = event.source.useId
-    srcGroupID = event.source.groupId
+    #srcUserID = event.source.useId
+    #srcGroupID = event.source.groupId
     #profile = line_bot_api.get_group_member_profile(srcGroupID, srcUserID)
     #member_ids_res = line_bot_api.get_group_member_ids(srcGroupID)
 
