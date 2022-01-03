@@ -83,6 +83,108 @@ def randomGuess(a,b,target):
     else: # 500/2001 約= 25%
         return '停損點位設好了嗎!?設定好就勇敢'+a+'吧!'
 
+def randomEat():
+    r = random.randint(0,50)
+    #print(r)
+    if r == 0: 
+        return '吃便當～'
+    elif r == 1:
+        return '吃滷肉飯～'
+    elif r == 2:
+        return '吃自助餐～'
+    elif r == 3:
+        return '吃乾麵～'
+    elif r == 4:
+        return '吃牛肉麵～'
+    elif r == 5:
+        return '吃麥噹噹～'
+    elif r == 6:
+        return '吃肯德基～'
+    elif r == 7:
+        return '吃摩斯～'
+    elif r == 8:
+        return '吃漢堡王～'
+    elif r == 9:
+        return '吃21世紀～'
+    elif r == 10:
+        return '吃炒飯～'
+    elif r == 11:
+        return '吃義大利麵～'
+    elif r == 12:
+        return '吃涼麵～'
+    elif r == 13:
+        return '吃三明治～'
+    elif r == 14:
+        return '吃沙拉～'
+    elif r == 15:
+        return '吃PIZZA～'
+    elif r == 16:
+        return '吃咖喱飯～'
+    elif r == 17:
+        return '吃御飯糰～'
+    elif r == 18:
+        return '吃關東煮～'
+    elif r == 19:
+        return '吃烏龍麵～'
+    elif r == 20:
+        return '吃壽司～'
+    elif r == 21:
+        return '吃超商微波食品～'
+    elif r == 22:
+        return '吃麵包～'
+    elif r == 23:
+        return '吃泡麵～'
+    elif r == 24:
+        return '吃小火鍋～'
+    elif r == 25:
+        return '吃雞排～'
+    elif r == 26:
+        return '吃鹹酥雞～'
+    elif r == 27:
+        return '吃麵線～'
+    elif r == 28:
+        return '吃雞胸肉～'
+    elif r == 29:
+        return '吃肉圓～'
+    elif r == 30:
+        return '吃韓式飯捲～'
+    elif r == 31:
+        return '吃春捲～'
+    elif r == 32:
+        return '吃河粉～'
+    elif r == 33:
+        return '吃拉麵～'
+    elif r == 34:
+        return '吃陽春麵～'
+    elif r == 35:
+        return '吃焗烤料理～'
+    elif r == 36:
+        return '吃炸雞～'
+    elif r == 37:
+        return '吃優格～'
+    elif r == 38:
+        return '吃水煮青菜～'
+    elif r == 39:
+        return '吃熱炒～'
+    elif r == 40:
+        return '吃麻辣燙～'
+    elif r == 41:
+        return '吃米粉湯～'
+    elif r == 42:
+        return '吃八方雲集～'
+    elif r == 43:
+        return '吃四海遊龍～'
+    elif r == 44:
+        return '吃燒烤～'
+    elif r == 45:
+        return '吃魷魚羹～'
+    elif r == 46:
+        return '吃泰式料理～'
+    elif r == 47:
+        return '喝蛋白粉～'
+    else:
+        return '吃土～～'
+
 def parsingStr(pStr):
     splitStrArray = pStr.split(' ')
     
@@ -120,13 +222,17 @@ def parsingStr(pStr):
             outStr += '格式為三個數字中間空白隔開，第一個為高/低點\n'
             outStr += '後面兩個數字為中間K棒的開/收盤價(順序不重要)\n'
             outStr += 'ex: 23.5 30 30.8\n\n'
-            outStr += '110/12/23 ver 1.0.7'
+            outStr += 'F) 吃啥好勒～\n'
+            outStr += '輸入指令包含吃即可(不要有空格)\n\n'
+            outStr += '111/01/03 ver 1.0.8'
             return outStr
         elif (pStr[0] == '空' or pStr[0] == '多') and pStr[-2:] == '如何':
             if pStr[0] == '空':
                 return(randomGuess('空','多',pStr[1:-2]))
             else:
                 return(randomGuess('多','空',pStr[1:-2]))
+        elif '吃' in pStr:
+            return randomEat()
         else:
             return 'Error'
             
