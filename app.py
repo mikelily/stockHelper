@@ -373,6 +373,8 @@ def handle_message(event):
     #    line_bot_api.reply_message(event.reply_token,TextSendMessage(member_ids_res))
     if parsingStr(message) != 'Error':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(parsingStr(message)))
+    else:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage('大榮帥爆惹～～'))
     #if is_number(message):
     #    inputNum = float(message)
     #    msg = '計算金額為 : ' + str(inputNum) + '\n往上1.5%為 : ' + str(round(inputNum*1.015,2)) + '\n往下1.5%為 : ' + str(round(inputNum*0.985,2)) 
