@@ -84,7 +84,7 @@ def randomGuess(a,b,target):
         return '停損點位設好了嗎!?設定好就勇敢'+a+'吧!'
 
 def randomEat():
-    r = random.randint(0,50)
+    r = random.randint(0,51)
     #print(r)
     if r == 0: 
         return '吃便當～'
@@ -182,6 +182,10 @@ def randomEat():
         return '吃泰式料理～'
     elif r == 47:
         return '喝蛋白粉～'
+    elif r == 48:
+        return '吃水餃～'
+    elif r == 49:
+        return '吃永和豆漿～'
     else:
         return '吃土～～'
 
