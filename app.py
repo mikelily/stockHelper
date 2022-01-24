@@ -276,6 +276,7 @@ def parsingStr(pStr):
                 return 'Error2'
         elif splitStrArray[0] == 'k' or splitStrArray[0] == 'K':
             if is_number(splitStrArray[1]):
+                return 'test'
                 targetValue = float(splitStrArray[1])
                 outStr = ''
                 outStr += '開盤價格為' + targetValue
