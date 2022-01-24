@@ -271,9 +271,9 @@ def parsingStr(pStr):
                             outStr += repr(valueList[k]) + "  " + repr(endPrice) + "\n"
                         return outStr
                 else:
-                    return 'Error'
+                    return 'Error3'
             else:
-                return 'Error'
+                return 'Error2'
         elif splitStrArray[0] == 'k' or splitStrArray[0] == 'K':
             if is_number(splitStrArray[1]):
                 targetValue = float(splitStrArray[1])
@@ -287,9 +287,10 @@ def parsingStr(pStr):
                 return 'test'
                 #return outStr
             else:
-                return 'Error'
+                return 'test2'
+                #return 'Error'
         else:
-            return 'Error'
+            return 'Error1'
     elif len(splitStrArray) == 3:
         if splitStrArray[0] == 'count' or splitStrArray[0] == 'Count' or splitStrArray[0] == '結算':
             if is_number(splitStrArray[1]) and is_number(splitStrArray[2]):
