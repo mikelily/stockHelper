@@ -274,6 +274,19 @@ def parsingStr(pStr):
                     return 'Error'
             else:
                 return 'Error'
+        elif splitStrArray[0] == 'k' or splitStrArray[0] == 'K':
+            if is_number(splitStrArray[1]):
+                targetValue = float(splitStrArray[1])
+                outStr = ''
+                outStr += '開盤價格為' + targetValue
+                outStr += '1) 下跌2.5%出場價格約為:' + str(round(targetValue*0.975,2)) + "\n"
+                outStr += '2) 盤中漲超過' + str(round(targetValue*1.04,2)) + "後，出場點為:" + str(round(targetValue*1.01,2)) + "\n"
+                outStr += '3) 盤中漲超過' + str(round(targetValue*1.06,2)) + "後，出場點為:" + str(round(targetValue*1.015,2)) + "\n"
+                outStr += '4) 盤中漲超過' + str(round(targetValue*1.08,2)) + "後，出場點為:" + str(round(targetValue*1.03,2)) + "\n"
+                outStr += '5) 盤中漲停解開下殺後，出場點為:' + str(round(targetValue*1.04,2)) + "\n"
+                return outStr
+            else:
+                return 'Error'
         else:
             return 'Error'
     elif len(splitStrArray) == 3:
