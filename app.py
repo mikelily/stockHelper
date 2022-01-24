@@ -279,7 +279,7 @@ def parsingStr(pStr):
                 #return 'test'
                 targetValue = float(splitStrArray[1])
                 outStr = ''
-                outStr += '開盤價格為' + splitStrArray[1]
+                outStr += '開盤價格為' + splitStrArray[1] + "\n"
                 outStr += '1) 下跌2.5%出場價格約為:' + str(round(targetValue*0.975,2)) + "\n"
                 outStr += '2) 盤中漲超過' + str(round(targetValue*1.04,2)) + "後，出場點為:" + str(round(targetValue*1.01,2)) + "\n"
                 outStr += '3) 盤中漲超過' + str(round(targetValue*1.06,2)) + "後，出場點為:" + str(round(targetValue*1.015,2)) + "\n"
