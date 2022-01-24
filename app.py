@@ -284,7 +284,8 @@ def parsingStr(pStr):
                 outStr += '3) 盤中漲超過' + str(round(targetValue*1.06,2)) + "後，出場點為:" + str(round(targetValue*1.015,2)) + "\n"
                 outStr += '4) 盤中漲超過' + str(round(targetValue*1.08,2)) + "後，出場點為:" + str(round(targetValue*1.03,2)) + "\n"
                 outStr += '5) 盤中漲停解開下殺後，出場點為:' + str(round(targetValue*1.04,2)) + "\n"
-                return outStr
+                return 'test'
+                #return outStr
             else:
                 return 'Error'
         else:
