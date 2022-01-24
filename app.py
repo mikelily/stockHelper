@@ -271,12 +271,12 @@ def parsingStr(pStr):
                             outStr += repr(valueList[k]) + "  " + repr(endPrice) + "\n"
                         return outStr
                 else:
-                    return 'Error3'
+                    return 'Error'
             else:
-                return 'Error2'
+                return 'Error'
         elif splitStrArray[0] == 'k' or splitStrArray[0] == 'K':
             if is_number(splitStrArray[1]):
-                return 'test'
+                #return 'test'
                 targetValue = float(splitStrArray[1])
                 outStr = ''
                 outStr += '開盤價格為' + targetValue
@@ -285,13 +285,13 @@ def parsingStr(pStr):
                 outStr += '3) 盤中漲超過' + str(round(targetValue*1.06,2)) + "後，出場點為:" + str(round(targetValue*1.015,2)) + "\n"
                 outStr += '4) 盤中漲超過' + str(round(targetValue*1.08,2)) + "後，出場點為:" + str(round(targetValue*1.03,2)) + "\n"
                 outStr += '5) 盤中漲停解開下殺後，出場點為:' + str(round(targetValue*1.04,2)) + "\n"
-                return 'test'
-                #return outStr
+                #return 'test'
+                return outStr
             else:
-                return 'test2'
-                #return 'Error'
+                #return 'test2'
+                return 'Error'
         else:
-            return 'Error1'
+            return 'Error'
     elif len(splitStrArray) == 3:
         if splitStrArray[0] == 'count' or splitStrArray[0] == 'Count' or splitStrArray[0] == '結算':
             if is_number(splitStrArray[1]) and is_number(splitStrArray[2]):
