@@ -226,9 +226,12 @@ def parsingStr(pStr):
             outStr += '格式為三個數字中間空白隔開，第一個為高/低點\n'
             outStr += '後面兩個數字為中間K棒的開/收盤價(順序不重要)\n'
             outStr += 'ex: 23.5 30 30.8\n\n'
-            outStr += 'F) 吃啥好勒～\n'
+            outStr += 'F) K佬出廠價格參考\n'
+            outStr += '輸入 k/K 加上開盤價格，提供出場方式的參考點位\n'
+            outStr += 'ex: k 50.4 / K 121.5'
+            outStr += 'G) 吃啥好勒～\n'
             outStr += '輸入指令包含吃即可(不要有空格)\n\n'
-            outStr += '111/01/03 ver 1.0.8'
+            outStr += '111/01/25 ver 1.0.9'
             return outStr
         elif (pStr[0] == '空' or pStr[0] == '多') and pStr[-2:] == '如何':
             if pStr[0] == '空':
