@@ -228,7 +228,7 @@ def parsingStr(pStr):
             outStr += 'ex: 23.5 30 30.8\n\n'
             outStr += 'F) K佬出廠價格參考\n'
             outStr += '輸入 k/K 加上開盤價格，提供出場方式的參考點位\n'
-            outStr += 'ex: k 50.4 / K 121.5'
+            outStr += 'ex: k 50.4 / K 121.5\n\n'
             outStr += 'G) 吃啥好勒～\n'
             outStr += '輸入指令包含吃即可(不要有空格)\n\n'
             outStr += '111/01/25 ver 1.0.9'
@@ -284,10 +284,10 @@ def parsingStr(pStr):
                 outStr = ''
                 outStr += '開盤價格為 ' + splitStrArray[1] + "\n"
                 outStr += '1) 下跌2.5%出場價格約為 : ' + str(round(targetValue*0.975,2)) + "\n"
-                outStr += '2) 盤中漲超過4%(' + str(round(targetValue*1.04,2)) + ")後，\n   出場點為 : " + str(round(targetValue*1.01,2)) + "\n"
-                outStr += '3) 盤中漲超過6%(' + str(round(targetValue*1.06,2)) + ")後，\n   出場點為 : " + str(round(targetValue*1.015,2)) + "\n"
-                outStr += '4) 盤中漲超過8%(' + str(round(targetValue*1.08,2)) + ")後，\n   出場點為 : " + str(round(targetValue*1.03,2)) + "\n"
-                outStr += '5) 盤中漲停解開下殺後，\n   出場點為 : ' + str(round(targetValue*1.04,2)) + "\n"
+                outStr += '2) 盤中漲超過4%(' + str(round(targetValue*1.04,2)) + ")後，\n    出場點為 : " + str(round(targetValue*1.01,2)) + "\n"
+                outStr += '3) 盤中漲超過6%(' + str(round(targetValue*1.06,2)) + ")後，\n    出場點為 : " + str(round(targetValue*1.015,2)) + "\n"
+                outStr += '4) 盤中漲超過8%(' + str(round(targetValue*1.08,2)) + ")後，\n    出場點為 : " + str(round(targetValue*1.03,2)) + "\n"
+                outStr += '5) 盤中漲停解開下殺後，\n    出場點為 : ' + str(round(targetValue*1.04,2)) + "\n"
                 #return 'test'
                 return outStr
             else:
