@@ -226,7 +226,7 @@ def parsingStr(pStr):
             outStr += '格式為三個數字中間空白隔開，第一個為高/低點\n'
             outStr += '後面兩個數字為中間K棒的開/收盤價(順序不重要)\n'
             outStr += 'ex: 23.5 30 30.8\n\n'
-            outStr += 'F) K佬出廠價格參考\n'
+            outStr += 'F) K佬不在時，出場價格參考\n'
             outStr += '輸入 k/K 加上開盤價格，提供出場方式的參考點位\n'
             outStr += 'ex: k 50.4 / K 121.5\n\n'
             outStr += 'G) 吃啥好勒～\n'
