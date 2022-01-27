@@ -241,7 +241,13 @@ def parsingStr(pStr):
         elif '吃' in pStr:
             return randomEat()
         elif '帥' in pStr:
-            return '\大榮/\大榮/\大榮/ 帥爆了～'
+            r = random.randint(0,1)
+            if r == 0:
+                return '\大榮/\大榮/\大榮/ 帥爆了～'
+            else:
+                return '\K佬/\K佬/\K佬/ 帥爆了～'
+
+            #return '\大榮/\大榮/\大榮/ 帥爆了～'
         else:
             return 'Error'
             
