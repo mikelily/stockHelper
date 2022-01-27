@@ -248,6 +248,12 @@ def parsingStr(pStr):
                 return '\K佬/\K佬/\K佬/ 帥爆了～'
 
             #return '\大榮/\大榮/\大榮/ 帥爆了～'
+        elif '美' in pStr:
+            r = random.randint(0,1)
+            if r == 0:
+                return '\云云/\云云/\云云/ 最漂釀～～'
+            else:
+                return '\云云/\云云/\云云/ 最漂釀～～'
         else:
             return 'Error'
             
