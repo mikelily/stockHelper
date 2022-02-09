@@ -381,7 +381,7 @@ def parsingStr(pStr):
                 outStr = ''
                 outStr += '總成交金額 : '+splitStrArray[1]+'\n'
                 outStr += '應收付金額 : '+splitStrArray[2]+'\n'
-                discount = round(float(splitStrArray[3])*100,0)
+                discount = int(round(float(splitStrArray[3])*100,0))
                 #outStr += '折數 : '+splitStrArray[3]+' 折\n'
                 outStr += '折數 : '+str(discount)+' 折\n'
                 saveValue = round(float(splitStrArray[1]) * 0.001425 * (1 - float(splitStrArray[3])/10),2)
