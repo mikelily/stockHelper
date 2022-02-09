@@ -231,7 +231,7 @@ def parsingStr(pStr):
             outStr += 'ex: k 50.4 / K 121.5\n\n'
             outStr += 'G) 吃啥好勒～\n'
             outStr += '輸入指令包含吃即可(不要有空格)\n\n'
-            outStr += '111/01/25 ver 1.0.9'
+            outStr += '111/01/25 ver 1.0.10'
             return outStr
         elif (pStr[0] == '空' or pStr[0] == '多') and pStr[-2:] == '如何':
             if pStr[0] == '空':
@@ -381,10 +381,12 @@ def parsingStr(pStr):
                 outStr = ''
                 outStr += '總成交金額 : '+splitStrArray[1]+'\n'
                 outStr += '應收付金額 : '+splitStrArray[2]+'\n'
-                outStr += '折數 : '+splitStrArray[3]+' 折\n'
+                discount = round(float(splitStrArray[3])*100,0)
+                #outStr += '折數 : '+splitStrArray[3]+' 折\n'
+                outStr += '折數 : '+str(discount)+' 折\n'
                 saveValue = round(float(splitStrArray[1]) * 0.001425 * (1 - float(splitStrArray[3])/10),2)
                 outStr += '折讓金額約為 : '+str(saveValue)+'\n'
-                finalValue = float(splitStrArray[2]) + saveValue
+                finalValue = round(float(splitStrArray[2]) + saveValue , 2)
                 outStr += '結算金額約為 : '+str(finalValue)+'\n'
                 return outStr
             else:
