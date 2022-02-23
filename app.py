@@ -305,6 +305,21 @@ def parsingStr(pStr):
             else:
                 #return 'test2'
                 return 'Error'
+        elif splitStrArray[0] == 'h' or splitStrArray[0] == 'H':
+            if is_number(splitStrArray[1]):
+                #return 'test'
+                targetValue = float(splitStrArray[1])
+                outStr = ''
+                outStr += '960 : ' + splitStrArray[1] + "\n\n"
+                outStr += '1) +200 : ' + str(round(targetValue+200,0)) + "\n"
+                outStr += '2)  +80 : ' + str(round(targetValue+80,0)) + "\n"
+                outStr += '3) -110 : ' + str(round(targetValue-110,0)) + "\n"
+                outStr += '4) -200 : ' + str(round(targetValue-200,0)) + "\n"
+                #return 'test'
+                return outStr
+            else:
+                #return 'test2'
+                return 'Error'
         else:
             return 'Error'
     elif len(splitStrArray) == 3:
